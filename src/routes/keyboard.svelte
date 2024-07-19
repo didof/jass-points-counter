@@ -3,7 +3,11 @@
 </script>
 
 <script lang="ts">
+  import Icon from "@iconify/svelte";
+
   import { createEventDispatcher } from "svelte";
+  import { cubicInOut } from "svelte/easing";
+  import { fly } from "svelte/transition";
 
   const dispatch = createEventDispatcher<{
     change: number;
@@ -20,42 +24,46 @@
 
 {#if open}
   <div
-    class="absolute inset-0 flex flex-col justify-between bg-black text-white {className}"
+    transition:fly={{ duration: 200, y: 100 }}
+    class="absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-zinc-800/90 to-zinc-950/90 border-t-2 border-zinc-900 text-white {className}"
   >
-    <div class="text-3xl font-bold tracking-widest text-center py-1">
+    <div class="text-3xl font-bold tracking-widest text-right py-1 px-4 border-b-2 border-zinc-900">
       {p.replace(/^0+/, "") || "0"}
     </div>
-    <div class="grid grid-cols-3 flex-grow">
+    <div class="grid grid-cols-3 flex-grow opacity-80">
       {#each N as n}
-        <button class="border text-2xl font-semibold" on:click={() => (p += n)}>
+        <button class="text-2xl font-semibold" on:click={() => (p += n)}>
           {n}
         </button>
       {/each}
       <button
-        class="border text-2xl font-semibold bg-red-500"
+        class="text-xl font-semibold bg-rose-900 flex items-center justify-center gap-1 rounded-tr-md"
         on:click={() => (open = false)}
       >
-        cancel
+        <Icon icon="carbon:close-outline" />
+        Schliessen
       </button>
-      <button class="border text-2xl font-semibold" on:click={() => (p += 0)}
-        >0</button
-      >
+      <button class="text-2xl font-semibold" on:click={() => (p += 0)}>
+        0
+      </button>
       <button
-        class="border text-2xl font-semibold bg-orange-500"
+        class="text-xl font-semibold bg-orange-900 flex items-center justify-center gap-1 rounded-tl-md"
         on:click={() => {
           p = p.substring(0, p.length - 1);
         }}
       >
-        x
+        <Icon icon="mdi:erase-outline" />
+        Löschen
       </button>
       <button
-        class="border text-2xl font-semibold col-span-3 bg-green-500"
+        class="text-xl font-semibold col-span-3 bg-emerald-800 flex items-center justify-center gap-1"
         on:click={() => {
           value += parseInt(p, 10);
           dispatch("change", value);
           open = false;
         }}
       >
+        <Icon icon="ph:check-bold" />
         OK
       </button>
     </div>

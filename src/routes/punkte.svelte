@@ -1,27 +1,27 @@
 <script lang="ts">
-	export let value: number;
-	let prev = 0;
-	let hundreds = 0;
-	let fifties = 0;
-	let twenties = 0;
-	let remainder = 0;
-	$: if (prev < value) {
-		// normal use
-		let delta = value - prev;
+  export let value: number;
+  let prev = 0;
+  let hundreds = 0;
+  let fifties = 0;
+  let twenties = 0;
+  let remainder = 0;
+  $: if (prev < value) {
+    // normal use
+    let delta = value - prev;
 
-		hundreds = Math.floor(delta / 100);
-		delta = delta % 100;
+    hundreds = Math.floor(delta / 100);
+    delta = delta % 100;
 
-		fifties = Math.floor(delta / 50);
-		delta = delta % 50;
+    fifties = Math.floor(delta / 50);
+    delta = delta % 50;
 
-		twenties = Math.floor(delta / 20);
-		remainder = delta % 20;
+    twenties = Math.floor(delta / 20);
+    remainder = delta % 20;
 
-		prev = value;
-	} else {
-		// history pop
-	}
+    prev = value;
+  } else {
+    // history pop
+  }
 </script>
 
 <div class="h-full p-8 text-3xl font-bold flex-col relative">
