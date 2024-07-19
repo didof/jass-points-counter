@@ -1,6 +1,7 @@
 <script lang="ts">
   import Keyboard from "./keyboard.svelte";
   import Punkte from "./punkte.svelte";
+  import Systembar from "./systembar.svelte";
 
   let P1 = 0;
   let openK1 = false;
@@ -16,33 +17,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="h-screen w-screen flex flex-col justify-between">
-  <menu class="flex">
-    <button
-      on:click={() => {
-        history.length = 0;
-        P1 = 0;
-        P2 = 0;
-        openK1 = false;
-        openK2 = false;
-      }}
-      class="px-6 py-3 text-xl font-semibold border"
-    >
-      reset
-    </button>
-    <button
-      on:click={() => {
-        history.pop();
-        if (history.length == 0) return;
-        const last = history.at(-1) || [0, 0];
-        P1 = last[0];
-        P2 = last[1];
-      }}
-      class="px-6 py-3 text-xl font-semibold border bg-blue-500"
-    >
-      undo
-    </button>
-  </menu>
+<div class="h-screen w-screen flex flex-col justify-between" style="height: 100svh;">
   <div class="h-full grid grid-cols-1 grid-rows-2">
     <div class="border bg-blue-500/20 relative rotate-180">
       <div class="absolute inset-0" on:click={() => (openK1 = true)}>
@@ -71,4 +46,5 @@
       />
     </div>
   </div>
+  <Systembar bind:P1 bind:P2 bind:openK1 bind:openK2 bind:history />
 </div>

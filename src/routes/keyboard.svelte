@@ -20,7 +20,7 @@
 
 {#if open}
   <div
-    class="absolute inset-0 flex flex-col justify-between bg-black {className}"
+    class="absolute inset-0 flex flex-col justify-between bg-black text-white {className}"
   >
     <div class="text-3xl font-bold tracking-widest text-center py-1">
       {p.replace(/^0+/, "") || "0"}
