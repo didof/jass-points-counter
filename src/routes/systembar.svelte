@@ -17,9 +17,10 @@
       openK1 = false;
       openK2 = false;
     }}
-    class="px-6 py-3 text-xl font-semibold"
+    class="p-3 flex items-center gap-2"
   >
-    reset
+    <Icon icon="fluent:arrow-reset-20-filled" />
+    Reset
   </button>
   <button
     on:click={() => {
@@ -29,11 +30,20 @@
       P1 = last[0];
       P2 = last[1];
     }}
-    class="px-6 py-3 text-xl font-semibold bg-blue-500"
+    class="p-3 bg-blue-500/30 flex items-center gap-2"
   >
-    undo
+    <Icon icon="majesticons:undo-line" />
+    Rückgängig
   </button>
-  <a href="https://github.com/didof/jass-points-counter" target="_blank" class="ml-auto grid place-content-center p-2 w-14">
+  <span class="flex flex-col ml-auto text-sm font-thin text-center">
+    <span> für Nina </span>
+    <span> mit 💚 </span>
+  </span>
+  <a
+    href="https://github.com/didof/jass-points-counter"
+    target="_blank"
+    class="grid place-content-center p-2 w-14"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 30 30"
